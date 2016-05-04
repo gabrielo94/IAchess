@@ -28,7 +28,6 @@ public class BoardRater {
         int whitePoints = 0;
         int blackPoints = 0;
         for(Piece p: board.getPieceList()){
-            System.out.print("hola mundo");
             if(p.getPieceColor() == Player.WHITE){
                 whitePoints += ratePiece(p);
             } else {
