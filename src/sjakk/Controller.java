@@ -29,11 +29,11 @@ public class Controller {
         chessboard = game.getChessboard();
         frame = new ChessFrame();
         
-        NavigationPanel navPanel = new NavigationPanel(); 
+        //NavigationPanel navPanel = new NavigationPanel(); 
         boardPanel = new ChessboardPanel(this);
         
         frame.addPanelCenter(boardPanel);
-        frame.addPanelNorth(navPanel);
+        //frame.addPanelNorth(navPanel);
     }
 
     public void showStartupBoard() {
