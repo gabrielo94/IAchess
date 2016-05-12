@@ -35,8 +35,9 @@ public class Node {
         }
         
         initMaxMin(turn);
-
-        for (Move move : moves) {
+        moves.parallelStream().forEach(move -> exploreAuxiliar(board, move,
+                depth, turn));
+        /*for (Move move : moves) {
             Chessboard newBoard = ChessboardBuilder.copy(board);
             newBoard.updateMove(move);
             Node child = new Node(playingAs);
@@ -51,7 +52,7 @@ public class Node {
                     rating = child.rating;
                 }
             }
-        }
+        }*/
     }
 
     private void initMaxMin(Player turn) {
@@ -59,6 +60,24 @@ public class Node {
             rating = Integer.MIN_VALUE;
         } else {
             rating = Integer.MAX_VALUE;
+        }
+    }
+    
+    private void exploreAuxiliar(Chessboard board, Move move, int depth, 
+            Player turn) {
+        Chessboard newBoard = ChessboardBuilder.copy(board);
+        newBoard.updateMove(move);
+        Node child = new Node(playingAs);
+        child.explore(depth - 1, newBoard, Chess.switchPlayer(turn));
+
+        if (turn == playingAs) {
+            if (child.rating > rating) {
+                rating = child.rating;            
+            }
+        } else {
+            if(child.rating < rating){
+                rating = child.rating;
+            }
         }
     }
 }
