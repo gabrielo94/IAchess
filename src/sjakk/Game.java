@@ -29,12 +29,13 @@ public class Game {
         return chessboard;
     }
     
-    public Move getAIMove(Player player){
+    public Move getAIsugestion(Player player){
         Move move;
       
         if (player == Player.WHITE) {
             BruteChessAI aiWhite = new BruteChessAI(Player.WHITE);
             move = aiWhite.getChessMove(chessboard);
+            
         } else {
             BruteChessAI aiBlack = new BruteChessAI(Player.BLACK);
             move = aiBlack.getChessMove(chessboard);
@@ -42,6 +43,22 @@ public class Game {
 
         chessboard.updateMove(move);
         return move;
+    }
+    public String getAIMove(Player player){
+        Move move;
+      
+        if (player == Player.WHITE) {
+            BruteChessAI aiWhite = new BruteChessAI(Player.WHITE);
+            move = aiWhite.getChessMove(chessboard);
+            
+        } else {
+            BruteChessAI aiBlack = new BruteChessAI(Player.BLACK);
+            move = aiBlack.getChessMove(chessboard);
+        }
+
+        //chessboard.updateMove(move);
+        //chessboard.sugestMove(move);
+        return move.toString();
     }
     
     public void gameLoop(){

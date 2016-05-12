@@ -130,23 +130,11 @@ public class Chessboard {
         }        
     }
     
-    private void updateCastlingMove(Move move){
-        int kingX = move.getStartPos().getRow();
-        int kingY = move.getEndPos().getColumn();
-        Piece king = pieces[kingX][kingY];
-        int towerX = move.getEndPos().getRow();
-        int towerY = move.getEndPos().getColumn();
-        Piece tower = pieces[towerX][towerY];
-        
-        pieces[kingX][kingY] = null;
-         pieces[towerX][towerY] = null;
-        
-        if(towerY > kingY){ //Queenside
-            Position kPos = new Position(kingX,kingY-2 );
-            king.updateCurrentPos(kPos);
-        }
-        
+    public void sugestMove(Move move) {
+           
     }
+    
+  
     
     private void checkPawnPromotion(Move move) {
         int row = move.getEndPos().getRow();

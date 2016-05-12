@@ -16,6 +16,7 @@ public class Controller {
 
     private ChessFrame frame;
     private ChessboardPanel boardPanel;
+    NavigationPanel navPanel;
 
     private Game game;
     private Chessboard chessboard;
@@ -29,11 +30,12 @@ public class Controller {
         chessboard = game.getChessboard();
         frame = new ChessFrame();
         
-        //NavigationPanel navPanel = new NavigationPanel(); 
+        navPanel = new NavigationPanel(); 
+        
         boardPanel = new ChessboardPanel(this);
         
         frame.addPanelCenter(boardPanel);
-        //frame.addPanelNorth(navPanel);
+        frame.addPanelNorth(navPanel);
     }
 
     public void showStartupBoard() {
@@ -55,18 +57,26 @@ public class Controller {
     }
 
     public void startGame() {
-        if (playerTurn != playingAs) {
-            Move move = game.getAIMove(playerTurn);
-            updateMoveToUI(move);
-            playerTurn = playingAs;
+        //if (playerTurn != playingAs) {
+            makesugestion();
+        //}        
+    }
+    
+    public void makesugestion(){
+        String move = game.getAIMove(playerTurn);
+            //updateMoveToUI(move);
+            navPanel.changesugest(move);
+            //playerTurn = playingAs;
             boardPanel.refreshUI();
-        }        
     }
     
     public void updateMoveToUI(Move move) {
         Move mappedMove = mapToUI(move);
                 
         boardPanel.updateMoveFromAI(mappedMove);
+    }
+    public void updateMoveToUI(String move) {
+        
     }
     
     public ArrayList<Position> possibleMovesRequestFromUI(Position pos){
@@ -76,7 +86,7 @@ public class Controller {
     }
 
     private Move requestMoveFromAI() {
-        return game.getAIMove(playerTurn);
+        return game.getAIsugestion(playerTurn);
     }
    
     public boolean processMoveFromUI(Move move) {
@@ -89,8 +99,7 @@ public class Controller {
             chessboard.updateMove(mappedMove);
             updateMoveToUI(mappedMove);
             playerTurn = Chess.switchPlayer(playerTurn);
-            updateMoveToUI(requestMoveFromAI());
-            playerTurn = Chess.switchPlayer(playerTurn);
+            makesugestion();
 
             return true;
         }
