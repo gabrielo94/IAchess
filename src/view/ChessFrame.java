@@ -25,4 +25,15 @@ public class ChessFrame extends JFrame {
         getContentPane().add(panel, BorderLayout.CENTER);
         pack();
     }
+    
+    public void addPanelSouth(JPanel panel) {
+        add(panel, BorderLayout.SOUTH);
+        pack();
+    }
+    
+    
+    public void addPanelWest(JPanel panel) {
+        add(panel, BorderLayout.WEST);
+        pack();
+    }
 }

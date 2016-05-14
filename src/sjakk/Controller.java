@@ -5,8 +5,10 @@ import pieces.Piece;
 import java.util.ArrayList;
 import Chessboard.Chessboard;
 import view.ChessFrame;
+import view.WestPanel;
 import view.chessboardPanel.ChessboardPanel;
-import view.NavigationPanel;
+import view.NorthPanel;
+import view.SouthPanel;
 
 /**
  *
@@ -16,7 +18,9 @@ public class Controller {
 
     private ChessFrame frame;
     private ChessboardPanel boardPanel;
-    NavigationPanel navPanel;
+    NorthPanel northPanel;
+    SouthPanel southPanel;
+    WestPanel westPanel;
 
     private Game game;
     private Chessboard chessboard;
@@ -30,12 +34,16 @@ public class Controller {
         chessboard = game.getChessboard();
         frame = new ChessFrame();
         
-        navPanel = new NavigationPanel(); 
+        northPanel = new NorthPanel(); 
+        southPanel = new SouthPanel();
+        westPanel = new WestPanel();
         
         boardPanel = new ChessboardPanel(this);
         
         frame.addPanelCenter(boardPanel);
-        frame.addPanelNorth(navPanel);
+        frame.addPanelNorth(northPanel);
+        frame.addPanelSouth(southPanel);
+        frame.addPanelWest(westPanel);
     }
 
     public void showStartupBoard() {
@@ -65,7 +73,7 @@ public class Controller {
     public void makesugestion(){
         String move = game.getAIMove(playerTurn);
             //updateMoveToUI(move);
-            navPanel.changesugest(move);
+            southPanel.changesugest(move);
             //playerTurn = playingAs;
             boardPanel.refreshUI();
     }
