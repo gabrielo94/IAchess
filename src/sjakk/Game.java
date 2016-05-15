@@ -38,10 +38,10 @@ public class Game {
             
         } else {
             BruteChessAI aiBlack = new BruteChessAI(Player.BLACK);
-            move = aiBlack.getChessMove(chessboard);
+            move = aiBlack.getChessMoveA(chessboard);
         }
 
-        chessboard.updateMove(move);
+        //chessboard.updateMove(move);
         return move;
     }
     public String getAIMove(Player player){
@@ -53,7 +53,7 @@ public class Game {
             
         } else {
             BruteChessAI aiBlack = new BruteChessAI(Player.BLACK);
-            move = aiBlack.getChessMove(chessboard);
+            move = aiBlack.getChessMoveA(chessboard);
         }
 
         //chessboard.updateMove(move);

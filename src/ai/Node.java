@@ -68,8 +68,43 @@ public class Node {
         Chessboard newBoard = ChessboardBuilder.copy(board);
         newBoard.updateMove(move);
         Node child = new Node(playingAs);
+
         child.explore(depth - 1, newBoard, Chess.switchPlayer(turn));
 
+        if (turn == playingAs) {
+            if (child.rating > rating) {
+                rating = child.rating;            
+            }
+        } else {
+            if(child.rating < rating){
+                rating = child.rating;
+            }
+        }
+    }
+    public void exploreA(int depth, Chessboard board, Player turn){
+       if(depth == 0){
+           rating = BoardRater.rateBoard(board, playingAs);
+           return;
+       }
+        ArrayList<Move> moves = board.getLegalMoves(turn);
+        if (moves.isEmpty()) {
+            rating = BoardRater.rateBoard(board, playingAs);
+        }
+        
+        initMaxMin(turn);
+        moves.parallelStream().forEach(move -> exploreAuxiliarA(board, move,
+                depth, turn));
+        
+    }
+    private void exploreAuxiliarA(Chessboard board, Move move, int depth, 
+            Player turn) {
+        Chessboard newBoard = ChessboardBuilder.copy(board);
+        newBoard.updateMove(move);
+        Node child = new Node(playingAs);
+        
+        if (child.rating>=move.rating){
+            child.exploreA(depth - 1, newBoard, Chess.switchPlayer(turn));
+        }
         if (turn == playingAs) {
             if (child.rating > rating) {
                 rating = child.rating;            

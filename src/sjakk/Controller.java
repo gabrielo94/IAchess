@@ -71,9 +71,11 @@ public class Controller {
     }
     
     public void makesugestion(){
-        String move = game.getAIMove(playerTurn);
+        
+        Move move=game.getAIsugestion(playerTurn);
+        String movest = move.toString();
             //updateMoveToUI(move);
-            southPanel.changesugest(move);
+            southPanel.changesugest(movest, move.rating,move.busqueda);
             //playerTurn = playingAs;
             boardPanel.refreshUI();
     }

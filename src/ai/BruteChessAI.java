@@ -22,4 +22,9 @@ public class BruteChessAI {
         root.explore(board);
         return root.bestMove;
     }
+    public Move getChessMoveA(Chessboard board){
+        Root root = new Root(playingAs);
+        root.exploreA(board);
+        return root.bestMove;
+    }
 }

@@ -11,6 +11,8 @@ public class Move {
     private Position endPos;
     private Piece movingPiece;
     private boolean castling;
+    public int rating;
+    public String busqueda="";
     
     public Move(Position startPos, Position endPos, Piece movingPiece){
         this.startPos = startPos;

@@ -36,6 +36,7 @@ public class Root {
                 currentBest = node.getRating();
             }
         }*/
+        Node node = new Node(playingAs);
         return bestMove;
     }    
     
@@ -48,6 +49,41 @@ public class Root {
         if(node.getRating() > currentBest){
             bestMove = move;
             currentBest = node.getRating();
+            bestMove.rating=currentBest;
+            bestMove.busqueda="MinMax";
+        }
+    }
+    public Move exploreA(Chessboard board){
+        ArrayList<Move> moves = board.getLegalMoves(playingAs);
+        if(moves.isEmpty()){
+            throw new IllegalStateException();
+        }
+        moves.parallelStream().forEach(move -> exploreAuxiliarA(board, move));
+        /*for(Move move: moves){
+            Chessboard newBoard = ChessboardBuilder.copy(board);
+            newBoard.updateMove(move);
+            Node node = new Node(playingAs);
+            node.explore(BruteChessAI.depth -1, newBoard, Chess.switchPlayer(playingAs));
+            if(node.getRating() > currentBest){
+                bestMove = move;
+                currentBest = node.getRating();
+            }
+        }*/
+        Node node = new Node(playingAs);
+        return bestMove;
+    }    
+    
+    private void exploreAuxiliarA(Chessboard board, Move move) {
+        
+        Chessboard newBoard = ChessboardBuilder.copy(board);
+        newBoard.updateMove(move);
+        Node node = new Node(playingAs);
+        node.exploreA(BruteChessAI.depth -1, newBoard, Chess.switchPlayer(playingAs));
+        if(node.getRating() > currentBest){
+            bestMove = move;
+            currentBest = node.getRating();
+            bestMove.rating=currentBest;
+            bestMove.busqueda="A*";
         }
     }
 }

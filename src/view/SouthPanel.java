@@ -18,7 +18,7 @@ public class SouthPanel extends JPanel {
     private void init(){
         add(lblSuggest);
     }
-    public void changesugest(String text){
-        lblSuggest.setText("Sugerencia: " + text);
+    public void changesugest(String text, int heuristica,String busqueda){
+        lblSuggest.setText("Sugerencia: " + text+ "\n "+"El resultado de la heuristica es: "+heuristica+"\n "+"Con el tipo de busqueda: "+busqueda);
     }
 }
