@@ -83,7 +83,7 @@ public class Root {
             bestMove = move;
             currentBest = node.getRating();
             bestMove.rating=currentBest;
-            bestMove.busqueda="A*";
+            bestMove.busqueda="MiniMax con Poda";
         }
     }
 }

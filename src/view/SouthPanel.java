@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  */
 public class SouthPanel extends JPanel {
     
-    JLabel lblSuggest = new JLabel("Sugerencia: ");
+    JLabel lblSuggest = new JLabel("Cargando movimientos...");
     public SouthPanel(){
         init();
     }
@@ -19,6 +19,6 @@ public class SouthPanel extends JPanel {
         add(lblSuggest);
     }
     public void changesugest(String text, int heuristica,String busqueda){
-        lblSuggest.setText("Sugerencia: " + text+ "\n "+"El resultado de la heuristica es: "+heuristica+"\n "+"Con el tipo de busqueda: "+busqueda);
+        lblSuggest.setText("Sugerencia: " + text+ "\n "+"La heuristica es: "+heuristica+"\n "+"Tipo de busqueda: "+busqueda);
     }
 }
